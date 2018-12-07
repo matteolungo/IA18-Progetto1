@@ -33,9 +33,10 @@ class Structure():
             n = n + 1
 
     def arrayPrint(self):
-        print(self.array, "\n")
+        print("Array:", self.array, "\n")
 
     def structPrint(self):
+        print("Struttura:\n")
         for i in range(0, len(self.array)):
             self.structList[i].print()
         print("\n")
@@ -64,7 +65,7 @@ class Structure():
         for i in range(0, 7):
             if key >= ((self.min) + (i * b)) and key < ((self.min) + (i + 1) * b):
                 return i
-        print("chiave", key, "non compresa nell'intervallo (", self.min, ",", (self.min + (i + 1) * b) - 1, ")")
+        print("chiave", key, "non compresa nell'intervallo rappresentabile (", self.min, ",", (self.min + (i + 1) * b) - 1, ")")
         exit()
 
     def control(self, struct, i):
@@ -107,6 +108,10 @@ class Structure():
             value = j[1]
             self.structList[i].insert(key, value)
 
+    """
+    ESEMPIO
+    """
+
 
 if __name__ == "__main__":
     v = Structure(5, 40, 7)
@@ -117,9 +122,6 @@ if __name__ == "__main__":
     v.insert(25, 50)
     v.insert(30, 60)
     v.insert(50, 100)
-
-    v.structPrint()
-
     v.insert(11, 22)
     v.insert(12, 24)
     v.insert(13, 26)
@@ -128,10 +130,12 @@ if __name__ == "__main__":
     v.insert(16, 32)
     v.structPrint()
 
-    v.insert(17, 34)
+    v.insert(17, 34)  # aggiungo un elemento e n(i)>=r -> la lista concatenata diventa albero AVL
     v.structPrint()
 
-    v.delete(17)
+    v.search(14)
+
+    v.delete(17)      # elimino l'elemento e n(i)<r -> l'albero AVL torna lista concatenata
     v.structPrint()
 
     v.search(10)
