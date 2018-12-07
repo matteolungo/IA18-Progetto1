@@ -1,8 +1,8 @@
 """
-    File name: array.py
+    File name: Structure.py
     Author: Matteo Lungo
     Date created: 05/12/2018
-    Date last modified: 14/12/2018
+    Date last modified: 07/12/2018
     Python Version: 3.6
 
     Questo modulo contiene l'implementazione
@@ -61,15 +61,11 @@ class Structure():
         d = self.d
         b = self.b
 
-        if key < self.min:
-            print("Key below min.")
-            exit()
-        elif key > self.max:
-            print("Key above max.")
-            exit()
         for i in range(0, 7):
             if key >= ((self.min) + (i * b)) and key < ((self.min) + (i + 1) * b):
                 return i
+        print("chiave", key, "non compresa nell'intervallo (", self.min, ",", (self.min + (i + 1) * b) - 1, ")")
+        exit()
 
     def control(self, struct, i):
         if type(struct) == LinkedListDictionary and struct.lenght() >= 6:
@@ -91,22 +87,19 @@ class Structure():
             self.structList[i].insert(key, value)
 
     def AVLToList(self, struct, i):
-        l=[]
         tree = BinaryTree()
-        struct.tree = tree
-        tree.stack = PilaArrayList()
-        s = tree.stack.s
-        if tree.root is not None:
-            stack.push([tree.root, 0])
-        while not tree.stack.isEmpty():
+        stack = PilaArrayList()
+        l = []
+        if struct.tree.root is not None:
+            stack.push([struct.tree.root, 0])
+        while not stack.isEmpty():
             current = stack.pop()
             level = current[1]
+            l.append(current[0].info)
             if current[0].rightSon is not None:
                 stack.push([current[0].rightSon, level + 1])
             if current[0].leftSon is not None:
                 stack.push([current[0].leftSon, level + 1])
-        for i in s:
-            l.append(i)
         self.structList.pop(i)
         self.structList.insert(i, LinkedListDictionary())
         for j in l:
@@ -120,16 +113,28 @@ if __name__ == "__main__":
     v.arrayPrint()
 
     v.insert(10, 20)
-    v.insert(20, 30)
-    v.insert(30, 40)
+    v.insert(20, 40)
+    v.insert(25, 50)
+    v.insert(30, 60)
+    v.insert(50, 100)
+
     v.structPrint()
 
-    v.insert(10, 20)
-    v.insert(10, 20)
-    v.insert(10, 20)
-    v.insert(10, 20)
-    v.insert(10, 20)
+    v.insert(11, 22)
+    v.insert(12, 24)
+    v.insert(13, 26)
+    v.insert(14, 28)
+    v.insert(15, 30)
+    v.insert(16, 32)
     v.structPrint()
 
-    v.delete(10)
+    v.insert(17, 34)
     v.structPrint()
+
+    v.delete(17)
+    v.structPrint()
+
+    v.search(10)
+    v.search(20)
+
+    v.insert(60, 120)
