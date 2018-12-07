@@ -2,6 +2,7 @@
     File name: avlTree.py
     Author: Ovidiu Daniel Barba
     Date created: 14/11/2018
+    Modified by: Matteo Lungo
     Date last modified: 14/11/2018
     Python Version: 3.7
 
@@ -13,6 +14,7 @@
 from trees.binaryTree import BinaryTree
 from trees.binaryTree import BinaryNode
 from dictTrees.binarySearchTree import BinarySearchTree
+from datastruct.Stack import PilaArrayList
 
 
 class AVLTree(BinarySearchTree):
@@ -211,6 +213,10 @@ class AVLTree(BinarySearchTree):
                 self.__setHeight(p, th)
                 self.cutSingleSon(p)
 
+    def lenght(self):
+        tree=BinaryTree()
+        return tree.nodesNumber()
+
 
 if __name__ == "__main__":
     avl = AVLTree()
@@ -234,3 +240,5 @@ if __name__ == "__main__":
 
     avl.delete(30)
     avl.print()
+
+    print(avl.lenght())

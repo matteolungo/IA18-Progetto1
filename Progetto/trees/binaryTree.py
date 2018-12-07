@@ -195,6 +195,7 @@ class BinaryTree(Tree):
 
     def print(self):
         """
+
         Permette di stampare l'albero. Per farlo si usa una pila di appoggio
         """
         stack = PilaArrayList()
@@ -237,5 +238,6 @@ if __name__ == "__main__":
     t.cut(t.root)
     print("Removed subtree in root with cut() method")
     print(f"{t.nodesNumber()} nodes left")
+
 
 

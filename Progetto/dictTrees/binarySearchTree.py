@@ -218,6 +218,10 @@ class BinarySearchTree(Dictionary):
                 u.info, p.info = p.info, u.info  # scambio il contenuto informativo dei nodi
                 self.cutOneSonNode(p)          # adesso so che p non ha figli destri e posso applicare la cutOneSonNode
 
+    def lenght(self):
+        tree=BinaryTree()
+        return tree.nodesNumber()
+
 
 if __name__ == "__main__":
 
@@ -252,5 +256,6 @@ if __name__ == "__main__":
     print(f"Deleted internal node 140 with 2 children")
     bst.print()
 
+    print(bst.lenght())
 
 
