@@ -2,7 +2,7 @@
     File name: Structure.py
     Author: Matteo Lungo
     Date created: 05/12/2018
-    Date last modified: 07/12/2018
+    Date last modified: 08/12/2018
     Python Version: 3.6
 
     Questo modulo contiene l'implementazione
@@ -13,6 +13,7 @@
 
 from dictTrees.avlTree import *
 from dictionaries.linkedListDictionary import *
+from time import time
 
 
 class Structure():
@@ -33,7 +34,7 @@ class Structure():
             n = n + 1
 
     def arrayPrint(self):
-        print("Array:", self.array, "\n")
+        print("Array:", self.array, "Intervallo: (", self.min, ",", self.min + (len(self.array)) * self.b, ")\n")
 
     def structPrint(self):
         print("Struttura:\n")
@@ -42,21 +43,30 @@ class Structure():
         print("\n")
 
     def insert(self, key, value):
+        start = time()
         structList = self.structList
         i = self.index(key)
         structList[i].insert(key, value)
         self.control(structList[i], i)
+        elapsed = time() - start
+        print(f"Tempo per inserire la chiave {key}: {elapsed} s")
 
     def delete(self, key):
+        start = time()
         structList = self.structList
         i = self.index(key)
         structList[i].delete(key)
         self.control(structList[i], i)
+        elapsed = time() - start
+        print(f"Tempo per eliminare la chiave {key}: {elapsed} s")
 
     def search(self, key):
+        start = time()
         structList = self.structList
         index = self.index(key)
         print(structList[index].search(key))
+        elapsed = time() - start
+        print(f"Tempo per trovare il valore assegnato alla chiave {key}: {elapsed} s")
 
     def index(self, key):
         d = self.d
@@ -65,7 +75,8 @@ class Structure():
         for i in range(0, 7):
             if key >= ((self.min) + (i * b)) and key < ((self.min) + (i + 1) * b):
                 return i
-        print("chiave", key, "non compresa nell'intervallo rappresentabile (", self.min, ",", (self.min + (i + 1) * b) - 1, ")")
+        print("chiave", key, "non compresa nell'intervallo rappresentabile (", self.min, ",",
+              (self.min + (i + 1) * b) - 1, ")")
         exit()
 
     def control(self, struct, i):
@@ -135,7 +146,7 @@ if __name__ == "__main__":
 
     v.search(14)
 
-    v.delete(17)      # elimino l'elemento e n(i)<r -> l'albero AVL torna lista concatenata
+    v.delete(17)  # elimino l'elemento e n(i)<r -> l'albero AVL torna lista concatenata
     v.structPrint()
 
     v.search(10)
