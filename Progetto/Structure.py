@@ -13,7 +13,6 @@
 
 from dictTrees.avlTree import *
 from dictionaries.linkedListDictionary import *
-from time import time
 
 
 class Structure():
@@ -26,57 +25,55 @@ class Structure():
         self.r = 6
         self.b = b
         self.d = int(abs((self.max - self.min) / b))
-        d = self.d
         n = 0
-        for i in range(0, d + 2):
-            self.array.append(n)
-            self.structList.append(LinkedListDictionary())
-            n = n + 1
+        if not b > 6:
+            print("b non è maggiore di 6")
+            exit()
+        elif not ((max - min) % b) == 0:
+            print("max-min non è multiplo di b")
+            exit()
+        else:
+            for i in range(0, self.d + 2):
+                self.array.append(n)
+                self.structList.append(LinkedListDictionary())
+                n = n + 1
 
     def arrayPrint(self):
-        print("Array:", self.array, "Intervallo: (", self.min, ",", self.min + (len(self.array)) * self.b, ")\n")
+        print("Array:", self.array, "\n")
 
     def structPrint(self):
         print("Struttura:\n")
         for i in range(0, len(self.array)):
+            print(i)
             self.structList[i].print()
         print("\n")
 
     def insert(self, key, value):
-        start = time()
         structList = self.structList
         i = self.index(key)
         structList[i].insert(key, value)
         self.control(structList[i], i)
-        elapsed = time() - start
-        print(f"Tempo per inserire la chiave {key}: {elapsed} s")
 
     def delete(self, key):
-        start = time()
         structList = self.structList
         i = self.index(key)
         structList[i].delete(key)
         self.control(structList[i], i)
-        elapsed = time() - start
-        print(f"Tempo per eliminare la chiave {key}: {elapsed} s")
 
     def search(self, key):
-        start = time()
         structList = self.structList
         index = self.index(key)
-        print(structList[index].search(key))
-        elapsed = time() - start
-        print(f"Tempo per trovare il valore assegnato alla chiave {key}: {elapsed} s")
+        print("Valore assegnato alla chiave",key, ":", structList[index].search(key))
 
     def index(self, key):
-        d = self.d
-        b = self.b
 
-        for i in range(0, 7):
-            if key >= ((self.min) + (i * b)) and key < ((self.min) + (i + 1) * b):
+        for i in range(0, self.d):
+            if key >= ((self.min) + (i * self.b)) and key < ((self.min) + (i + 1) * self.b):
                 return i
-        print("chiave", key, "non compresa nell'intervallo rappresentabile (", self.min, ",",
-              (self.min + (i + 1) * b) - 1, ")")
+            elif key < self.min:
+                return self.d
+            elif key > self.max:
+                return self.d + 1
         exit()
 
     def control(self, struct, i):
@@ -120,36 +117,28 @@ class Structure():
             self.structList[i].insert(key, value)
 
     """
-    ESEMPIO
+    ESEMPIO DI UTILIZZO
     """
 
 
 if __name__ == "__main__":
-    v = Structure(5, 40, 7)
+    v = Structure(20, 100, 8)
     v.arrayPrint()
 
-    v.insert(10, 20)
-    v.insert(20, 40)
-    v.insert(25, 50)
-    v.insert(30, 60)
-    v.insert(50, 100)
-    v.insert(11, 22)
-    v.insert(12, 24)
-    v.insert(13, 26)
-    v.insert(14, 28)
-    v.insert(15, 30)
-    v.insert(16, 32)
+    for i in range(0, 120, 8):
+        v.insert(i, i * 2)
     v.structPrint()
 
-    v.insert(17, 34)  # aggiungo un elemento e n(i)>=r -> la lista concatenata diventa albero AVL
+    for i in range(0, 120, 8):
+        v.search(i)
+
+    for i in range(60, 100):
+        v.insert(i, i * 2)
     v.structPrint()
 
-    v.search(14)
+    for i in range(0, 120, 8):
+        v.search(i)
 
-    v.delete(17)  # elimino l'elemento e n(i)<r -> l'albero AVL torna lista concatenata
+    for i in range(60, 100):
+        v.delete(i)
     v.structPrint()
-
-    v.search(10)
-    v.search(20)
-
-    v.insert(60, 120)

@@ -16,25 +16,18 @@ min = int(input("Inserire min: \n"))
 max = int(input("Inserire max: \n"))
 b = int(input("Inserire b: \n"))
 
-if not b > 6:
-    print("b non è maggiore di 6")
-    exit()
-elif not ((max - min) % b) == 0:
-    print("max-min non è multiplo di b")
-    exit()
-else:
-    s = Structure(min, max, b)
-    s.arrayPrint()
-    s.structPrint()
+s = Structure(min, max, b)
+s.arrayPrint()
+s.structPrint()
 
-    """
-    METODI:
-    
-    insert(key, value) - inserisce una coppia (chiave, valore)
-    delete(key) - elimina una chiave e il valore associato
-    search(key) - restituisce il valore assegnato alla chiave
-    print() - mostra la struttura
-    """
+"""
+METODI:
+
+insert(key, value) - inserisce una coppia (chiave, valore)
+delete(key) - elimina una chiave e il valore associato
+search(key) - restituisce il valore assegnato alla chiave
+print() - mostra la struttura
+"""
 
 
 def insert(key, value):
