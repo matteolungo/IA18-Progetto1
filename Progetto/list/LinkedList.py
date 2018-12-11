@@ -108,7 +108,6 @@ class ListaCollegata:
         return len(l)
 
 
-
 # to run this module directly (NOT imported in another one)
 if __name__ == "__main__":
 

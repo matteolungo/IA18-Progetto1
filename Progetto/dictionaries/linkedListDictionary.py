@@ -90,6 +90,7 @@ class LinkedListDictionary(Dictionary):
             current = current.next
         return len(l)
 
+
 if __name__ == "__main__":
     dic = LinkedListDictionary()
 

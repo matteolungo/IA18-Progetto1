@@ -29,7 +29,7 @@ def dictionaryPerformance(ops, dic):
 
 
 if __name__ == "__main__":
-    ops = 5000
+    ops = 100
 
     ll = LinkedListDictionary()
     print("LINKED LIST DICTIONARY")
